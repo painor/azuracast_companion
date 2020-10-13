@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:audioplayer/audioplayer.dart';
+import 'package:azuracast_companion/Widgets/audio_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -40,7 +41,6 @@ class _MyHomePageState extends State<MyHomePage> {
         nowplaying["now_playing"]["duration"];
     var date = new DateTime.fromMillisecondsSinceEpoch(after * 1000);
     Duration dur = date.difference(DateTime.now());
-    print("Duration is ${dur}");
     Future.delayed(Duration(seconds: dur.inSeconds + 3), () {
       getCurrentSong();
     });
@@ -132,6 +132,10 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
           createMakeCard(),
+          Expanded(
+              child: SliderAudio(
+            maxValue: 110,
+          )),
           Expanded(
             child: FittedBox(
               child: IconButton(
